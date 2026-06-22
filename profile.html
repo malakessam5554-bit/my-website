@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>Malak Essam | Profile</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600&family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root { --bg: #0a0a0c; --accent: #00d4ff; --card: rgba(255,255,255,0.05); }
+        
+        body { 
+            background: var(--bg); color: #fff; margin: 0; 
+            font-family: 'Montserrat', sans-serif; 
+            display: flex; flex-direction: column; align-items: center; 
+            padding: 60px 20px; 
+            font-size: 1.2rem; /* تكبير الخط الأساسي */
+            animation: fadeInAnimation 1.5s ease-in; /* ظهور تدريجي */
+        }
+
+        @keyframes fadeInAnimation { from { opacity: 0; } to { opacity: 1; } }
+
+        .welcome-msg { font-size: 2.5rem; margin-bottom: 50px; text-align: center; }
+        .highlight { color: var(--accent); text-shadow: 0 0 15px var(--accent); }
+
+        .profile-grid { 
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
+            gap: 30px; width: 100%; max-width: 1100px;
+            animation: slideUp 1s ease-out; 
+        }
+
+        @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        
+        .card {
+            background: var(--card); backdrop-filter: blur(15px); padding: 40px;
+            border-radius: 30px; border: 1px solid rgba(255,255,255,0.1);
+            transition: 0.4s; text-align: center; cursor: pointer;
+        }
+        .card:hover { transform: translateY(-10px); border-color: var(--accent); box-shadow: 0 0 20px rgba(0, 212, 255, 0.2); }
+        .card i { font-size: 3rem; color: var(--accent); margin-bottom: 25px; }
+        .card h3 { font-size: 1.8rem; margin-bottom: 20px; }
+        .card p { line-height: 1.8; opacity: 0.9; }
+
+        .back-btn { margin-top: 60px; padding: 15px 40px; background: transparent; border: 2px solid var(--accent); color: var(--accent); border-radius: 15px; cursor: pointer; transition: 0.3s; font-size: 1.1rem; font-weight: bold;}
+        .back-btn:hover { background: var(--accent); color: white; }
+
+        /* ستايل السوشيال ميديا */
+        .social-section { text-align: center; margin: 60px 0; }
+        .social-icons { display: flex; justify-content: center; gap: 30px; }
+        .icon-link {
+            width: 70px; height: 70px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 2rem; color: #fff;
+            transition: 0.4s; text-decoration: none;
+        }
+        .icon-link:hover { background: var(--accent); transform: translateY(-8px); box-shadow: 0 0 25px var(--accent); }
+    </style>
+</head>
+<body>
+
+    <div class="welcome-msg">
+        مــرحــباً بــكـــــم  <span class="highlight"> </span> ✨
+    </div>
+
+    <div class="profile-grid">
+        <div class="card">
+            <i class="fa-solid fa-user-astronaut"></i>
+            <h3>My Profile 👩🏻‍💻</h3>
+            <p>I am Malak Essam, and I welcome you to my website.</p>
+        </div>
+        <div class="card">
+            <i class="fa-solid fa-code"></i>
+            <h3>My Skills 👩🏻‍💻</h3>
+            <p>I am skilled in website design, video editing using CapCat and Light Motion, and game design. </p>
+        </div>
+        <div class="card">
+            <i class="fa-solid fa-heart"></i>
+            <h3>My interests 👩🏻‍💻 </h3>
+            <p>I love learning programming languages and I love playing karate</p>
+        </div>
+    </div>
+
+    <div class="social-section">
+        <h3 style="margin-bottom: 25px; color: var(--accent);">حـسابــاتى هنا 👩🏻‍💻 ✧</h3>
+        <div class="social-icons">
+            <a href="https://www.instagram.com/malakessam5555?igsh=MzFnazBvaXFrd2hy" target="_blank" class="icon-link"><i class="fab fa-instagram"></i></a>
+            <a href="https://t.me/malakessam66" target="_blank" class="icon-link"><i class="fab fa-telegram-plane"></i></a>
+        </div>
+    </div>
+
+    <button class="back-btn" onclick="history.back()">رجوع للبداية <i class="fa-solid fa-arrow-left"></i></button>
+
+</body>
+</html>
