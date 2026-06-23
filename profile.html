@@ -6,18 +6,39 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600&family=Cairo:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        /* المربع الأول */
+.msg-card { background: rgba(255,255,255,0.05); backdrop-filter: blur(10px); padding: 30px; border-radius: 25px; border: 1px solid #00d4ff; text-align: center; width: 80%; max-width: 350px; margin: 30px auto; color: #fff; }
+
+/* المربع الثاني (مخفي في البداية) */
+.hidden-box { 
+    display: none; opacity: 0; transition: opacity 0.8s ease-in-out;
+    background: linear-gradient(135deg, rgba(0,212,255,0.2), rgba(0,0,0,0.5));
+    backdrop-filter: blur(15px); padding: 40px; border-radius: 30px; border: 2px solid #00d4ff;
+    text-align: center; width: 85%; max-width: 400px; margin: 20px auto;
+    box-shadow: 0 0 30px rgba(0, 212, 255, 0.3);
+}
+
+.elegant-text { font-family: 'Cairo', sans-serif; font-size: 1.8rem; color: #fff; margin-bottom: 20px; text-shadow: 0 0 10px #00d4ff; }
+
+/* أزرار شيك */
+.open-btn, .close-btn { background: transparent; border: 1px solid #00d4ff; color: #00d4ff; padding: 10px 20px; border-radius: 10px; cursor: pointer; transition: 0.3s; }
+.open-btn:hover, .close-btn:hover { background: #00d4ff; color: #000; }
+
         :root { --bg: #0a0a0c; --accent: #00d4ff; --card: rgba(255,255,255,0.05); }
         
         body { 
             background: var(--bg); color: #fff; margin: 0; 
             font-family: 'Montserrat', sans-serif; 
             display: flex; flex-direction: column; align-items: center; 
-            padding: 60px 20px; 
-            font-size: 1.2rem;
+            padding: 60px 20px; font-size: 1.2rem;
             animation: fadeInAnimation 1.5s ease-in;
         }
 
         @keyframes fadeInAnimation { from { opacity: 0; } to { opacity: 1; } }
+
+        /* ستايل زرار تغيير الخط */
+        .font-btn { padding: 10px 20px; border-radius: 12px; border: 1px solid var(--accent); background: transparent; color: var(--accent); cursor: pointer; margin-bottom: 30px; font-weight: bold; }
+        .font-btn:hover { background: var(--accent); color: white; }
 
         .welcome-msg { font-size: 2.5rem; margin-bottom: 50px; text-align: center; }
         .highlight { color: var(--accent); text-shadow: 0 0 15px var(--accent); }
@@ -25,10 +46,7 @@
         .profile-grid { 
             display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
             gap: 30px; width: 100%; max-width: 1100px;
-            animation: slideUp 1s ease-out; 
         }
-
-        @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
         
         .card {
             background: var(--card); backdrop-filter: blur(15px); padding: 40px;
@@ -58,9 +76,17 @@
     </style>
 </head>
 <body>
-<button onclick="changeFont()" style="padding: 10px 20px; border-radius: 10px; border: 1px solid #00d4ff; background: transparent; color: #00d4ff; cursor: pointer; margin-bottom: 20px;">
-    غير زخرفة الخط👩🏻‍💻
-</button>
+<div class="msg-card" id="first-box">
+    <p>شوفى رسالتى ليكى 😊</p>
+    <button class="open-btn" onclick="showMessage()">افتحي الرسالة</button>
+</div>
+
+<div class="hidden-box" id="second-box">
+    <p class="elegant-text">✧ ابتسمى فلا جميلة الا انتى ✧</p>
+    <button class="close-btn" onclick="hideMessage()">خلاص قفليها</button>
+</div>
+
+    <button class="font-btn" onclick="changeFont()">تغيير الخط ✨</button>
 
     <div class="welcome-msg">
         مــرحــباً بــكـــــم  <span class="highlight"> </span> ✨
@@ -93,11 +119,24 @@
     </div>
 
     <button class="back-btn" onclick="history.back()">رجوع للبداية <i class="fa-solid fa-arrow-left"></i></button>
-<script>
-    function changeFont() {
-        const fonts = ['Montserrat', 'Cairo', 'Arial', 'Courier New', 'Tahoma'];
-        const randomFont = fonts[Math.floor(Math.random() * fonts.length)];
-        document.body.style.fontFamily = randomFont;
+
+    <script>
+        function changeFont() {
+            const fonts = ['Montserrat', 'Cairo', 'Arial', 'Tahoma'];
+            document.body.style.fontFamily = fonts[Math.floor(Math.random() * fonts.length)];
+        }
+    </script>
+    <script>
+    function showMessage() {
+        const box = document.getElementById('second-box');
+        box.style.display = 'block';
+        setTimeout(() => { box.style.opacity = '1'; }, 50); // تأخير بسيط للظهور التدريجي
+    }
+
+    function hideMessage() {
+        const box = document.getElementById('second-box');
+        box.style.opacity = '0';
+        setTimeout(() => { box.style.display = 'none'; }, 800); // اختفاء بعد انتهاء التأثير
     }
 </script>
 
