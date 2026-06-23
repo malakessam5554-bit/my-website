@@ -2,143 +2,122 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>Malak Essam | Profile</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600&family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+    <title>Malak Essam | Premium Profile</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Cairo:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* المربع الأول */
-.msg-card { background: rgba(255,255,255,0.05); backdrop-filter: blur(10px); padding: 30px; border-radius: 25px; border: 1px solid #00d4ff; text-align: center; width: 80%; max-width: 350px; margin: 30px auto; color: #fff; }
+        :root { --bg: #050505; --accent: #00d4ff; }
+        body { background: var(--bg); color: #fff; margin: 0; font-family: 'Montserrat', sans-serif; display: flex; flex-direction: column; align-items: center; padding: 40px 20px; font-size: 1.2rem; }
 
-/* المربع الثاني (مخفي في البداية) */
-.hidden-box { 
-    display: none; opacity: 0; transition: opacity 0.8s ease-in-out;
-    background: linear-gradient(135deg, rgba(0,212,255,0.2), rgba(0,0,0,0.5));
-    backdrop-filter: blur(15px); padding: 40px; border-radius: 30px; border: 2px solid #00d4ff;
-    text-align: center; width: 85%; max-width: 400px; margin: 20px auto;
-    box-shadow: 0 0 30px rgba(0, 212, 255, 0.3);
-}
-
-.elegant-text { font-family: 'Cairo', sans-serif; font-size: 1.8rem; color: #fff; margin-bottom: 20px; text-shadow: 0 0 10px #00d4ff; }
-
-/* أزرار شيك */
-.open-btn, .close-btn { background: transparent; border: 1px solid #00d4ff; color: #00d4ff; padding: 10px 20px; border-radius: 10px; cursor: pointer; transition: 0.3s; }
-.open-btn:hover, .close-btn:hover { background: #00d4ff; color: #000; }
-
-        :root { --bg: #0a0a0c; --accent: #00d4ff; --card: rgba(255,255,255,0.05); }
+        .menu-icon { position: fixed; top: 25px; left: 25px; font-size: 2rem; color: var(--accent); cursor: pointer; z-index: 1000; }
         
-        body { 
-            background: var(--bg); color: #fff; margin: 0; 
-            font-family: 'Montserrat', sans-serif; 
-            display: flex; flex-direction: column; align-items: center; 
-            padding: 60px 20px; font-size: 1.2rem;
-            animation: fadeInAnimation 1.5s ease-in;
+        /* القائمة الجانبية مع إعدادات الخط */
+        .side-menu { 
+            position: fixed; top: 0; left: -320px; width: 300px; height: 100%; 
+            background: rgba(0, 0, 0, 0.98); backdrop-filter: blur(20px);
+            border-left: 2px solid var(--accent); transition: 0.5s; z-index: 999; 
+            padding-top: 100px; text-align: center;
         }
+        .side-menu.active { left: 0; }
+        .side-menu .btn { font-size: 1.3rem; padding: 15px 30px; margin-bottom: 20px; }
 
-        @keyframes fadeInAnimation { from { opacity: 0; } to { opacity: 1; } }
-
-        /* ستايل زرار تغيير الخط */
-        .font-btn { padding: 10px 20px; border-radius: 12px; border: 1px solid var(--accent); background: transparent; color: var(--accent); cursor: pointer; margin-bottom: 30px; font-weight: bold; }
-        .font-btn:hover { background: var(--accent); color: white; }
-
-        .welcome-msg { font-size: 2.5rem; margin-bottom: 50px; text-align: center; }
-        .highlight { color: var(--accent); text-shadow: 0 0 15px var(--accent); }
-
-        .profile-grid { 
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
-            gap: 30px; width: 100%; max-width: 1100px;
-        }
+        .profile-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; width: 100%; max-width: 1100px; margin-top: 40px; }
         
-        .card {
-            background: var(--card); backdrop-filter: blur(15px); padding: 40px;
-            border-radius: 30px; border: 1px solid rgba(255,255,255,0.1);
-            transition: 0.4s; text-align: center; cursor: pointer;
-        }
-        .card:hover { transform: translateY(-10px); border-color: var(--accent); box-shadow: 0 0 20px rgba(0, 212, 255, 0.2); }
-        .card i { font-size: 3rem; color: var(--accent); margin-bottom: 25px; }
-        .card h3 { font-size: 1.8rem; margin-bottom: 20px; }
-        .card p { line-height: 1.8; opacity: 0.9; }
+        .card { background: rgba(255,255,255,0.03); padding: 30px; border-radius: 40px; border: 1px solid rgba(255,255,255,0.1); text-align: center; transition: 0.4s; position: relative; overflow: hidden; }
+        .card:hover { border-color: var(--accent); box-shadow: 0 0 20px rgba(0, 212, 255, 0.15); transform: translateY(-5px); }
+        
+        .card:nth-child(1) { border-top: 5px solid #00d4ff; }
+        .card:nth-child(2) { border-bottom: 5px solid #ff007a; }
+        .card:nth-child(3) { border-left: 5px solid #7000ff; }
+        .card:nth-child(4) { border: 2px dashed var(--accent); background: rgba(0, 212, 255, 0.05); }
 
-        .back-btn { margin-top: 60px; padding: 15px 40px; background: transparent; border: 2px solid var(--accent); color: var(--accent); border-radius: 15px; cursor: pointer; transition: 0.3s; font-size: 1.1rem; font-weight: bold;}
-        .back-btn:hover { background: var(--accent); color: white; }
+        .card i { font-size: 2.2rem; color: var(--accent); margin-bottom: 15px; }
 
-        .social-section { text-align: center; margin: 60px 0; }
-        .social-icons { display: flex; justify-content: center; gap: 30px; }
-        .icon-link {
-            width: 70px; height: 70px;
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 2rem; color: #fff;
-            transition: 0.4s; text-decoration: none;
+        .luxury-box { 
+            display: none; opacity: 0; transition: opacity 0.8s ease-in-out;
+            background: radial-gradient(circle, #1a1a2e, #050505);
+            padding: 50px; border-radius: 50px; border: 3px double var(--accent);
+            text-align: center; width: 90%; max-width: 500px; margin: 40px auto;
+            box-shadow: 0 0 50px rgba(0, 212, 255, 0.4);
         }
-        .icon-link:hover { background: var(--accent); transform: translateY(-8px); box-shadow: 0 0 25px var(--accent); }
+        .elegant-text { font-family: 'Cairo', sans-serif; font-size: 2rem; color: #fff; text-shadow: 0 0 15px var(--accent); }
+
+        .social-box { border: 1px solid rgba(255,255,255,0.1); padding: 25px; border-radius: 30px; margin: 40px 0; background: rgba(255,255,255,0.02); }
+        .social-section { display: flex; gap: 30px; justify-content: center; margin-top: 15px; }
+        .icon-link { font-size: 2rem; color: #fff; transition: 0.3s; }
+        .icon-link:hover { color: var(--accent); }
+
+        .footer-banner { background: rgba(0, 0, 0, 0.4); backdrop-filter: blur(10px); padding: 25px; border-radius: 50px; border: 1px solid var(--accent); text-align: center; margin: 40px auto; width: 90%; max-width: 500px; }
+        .btn { background: transparent; border: 1px solid var(--accent); color: var(--accent); padding: 10px 20px; border-radius: 10px; cursor: pointer; font-weight: bold; transition: 0.3s; }
+        .btn:hover { background: var(--accent); color: #000; }
     </style>
 </head>
 <body>
-<div class="msg-card" id="first-box">
-    <p>شوفى رسالتى ليكى 😊</p>
-    <button class="open-btn" onclick="showMessage()">افتحي الرسالة</button>
-</div>
 
-<div class="hidden-box" id="second-box">
-    <p class="elegant-text">✧ ابتسمى فلا جميلة الا انتى ✧</p>
-    <button class="close-btn" onclick="hideMessage()">خلاص قفليها</button>
-</div>
-
-    <button class="font-btn" onclick="changeFont()">تغيير الخط ✨</button>
-
-    <div class="welcome-msg">
-        مــرحــباً بــكـــــم  <span class="highlight"> </span> ✨
+    <div class="menu-icon" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
+    <div class="side-menu" id="sideMenu">
+        <div style="padding-top: 50px;">
+            <button class="btn" onclick="changeFont()">تغيير الخط 🔤</button><br><br>
+            <button class="btn" onclick="toggleMenu()">إغلاق ✕</button>
+        </div>
     </div>
+
+    <div style="margin-top: 40px; font-size: 2rem; color: var(--accent); font-weight: bold;">Welcome to my website 👩🏻‍💻</div>
 
     <div class="profile-grid">
+        <div class="card"><i class="fa-solid fa-user-astronaut"></i><h3>My Profile</h3><p>I'm Malak Essam and I welcome you to my website.</p></div>
+        <div class="card"><i class="fa-solid fa-code"></i><h3>My Skills</h3><p>I can design websites, design games, edit and create custom websites.</p></div>
+        <div class="card"><i class="fa-solid fa-heart"></i><h3>My interests</h3><p>I love learning programming languages and I love playing karate.</p></div>
         <div class="card">
-            <i class="fa-solid fa-user-astronaut"></i>
-            <h3>My Profile 👩🏻‍💻</h3>
-            <p>I am Malak Essam, and I welcome you to my website.</p>
-        </div>
-        <div class="card">
-            <i class="fa-solid fa-code"></i>
-            <h3>My Skills 👩🏻‍💻</h3>
-            <p>I am skilled in website design, video editing using CapCat and Light Motion, and game design. </p>
-        </div>
-        <div class="card">
-            <i class="fa-solid fa-heart"></i>
-            <h3>My interests 👩🏻‍💻 </h3>
-            <p>I love learning programming languages and I love playing karate</p>
+            <i class="fa-solid fa-envelope-open-text"></i><h3>Message</h3>
+            <p>شوفى رسالتى ليكى 😊</p>
+            <button class="btn" onclick="showMessage()">افتحى الرسالة</button>
         </div>
     </div>
 
-    <div class="social-section">
-        <h3 style="margin-bottom: 25px; color: var(--accent);">حـسابــاتى هنا 👩🏻‍💻 ✧</h3>
-        <div class="social-icons">
-            <a href="https://www.instagram.com/malakessam5555?igsh=MzFnazBvaXFrd2hy" target="_blank" class="icon-link"><i class="fab fa-instagram"></i></a>
+    <div class="luxury-box" id="luxuryBox">
+        <p class="elegant-text">✧ ابتسمى فلا جميلة الا انتى ✧</p>
+        <button class="btn" onclick="hideMessage()">إغلاق الرسالة</button>
+    </div>
+
+    <div class="social-box">
+        <h3 style="margin: 0; color: #aaa; font-size: 1.1rem;">My Social Media 👩🏻‍💻</h3>
+        <div class="social-section">
+            <a href="https://www.instagram.com/malakessam5555" target="_blank" class="icon-link"><i class="fab fa-instagram"></i></a>
             <a href="https://t.me/malakessam66" target="_blank" class="icon-link"><i class="fab fa-telegram-plane"></i></a>
         </div>
     </div>
 
-    <button class="back-btn" onclick="history.back()">رجوع للبداية <i class="fa-solid fa-arrow-left"></i></button>
+    <div class="footer-banner">
+        <p style="font-family: 'Cairo', sans-serif; font-size: 1.4rem; margin: 0;">Website Designer | Malak Essam 👩🏻‍💻</p>
+    </div>
 
     <script>
+        function toggleMenu() { 
+            const sideMenu = document.getElementById('sideMenu');
+            sideMenu.classList.toggle('active');
+            // تكبير الخط وجعله واضحاً عند فتح القائمة
+            if (sideMenu.classList.contains('active')) {
+                sideMenu.style.fontSize = '1.5rem';
+            } else {
+                sideMenu.style.fontSize = '1.2rem';
+            }
+        }
+
         function changeFont() {
             const fonts = ['Montserrat', 'Cairo', 'Arial', 'Tahoma'];
             document.body.style.fontFamily = fonts[Math.floor(Math.random() * fonts.length)];
         }
+        function showMessage() {
+            const box = document.getElementById('luxuryBox');
+            box.style.display = 'block';
+            setTimeout(() => { box.style.opacity = '1'; }, 50);
+        }
+        function hideMessage() {
+            const box = document.getElementById('luxuryBox');
+            box.style.opacity = '0';
+            setTimeout(() => { box.style.display = 'none'; }, 800);
+        }
     </script>
-    <script>
-    function showMessage() {
-        const box = document.getElementById('second-box');
-        box.style.display = 'block';
-        setTimeout(() => { box.style.opacity = '1'; }, 50); // تأخير بسيط للظهور التدريجي
-    }
-
-    function hideMessage() {
-        const box = document.getElementById('second-box');
-        box.style.opacity = '0';
-        setTimeout(() => { box.style.display = 'none'; }, 800); // اختفاء بعد انتهاء التأثير
-    }
-</script>
-
 </body>
 </html>
