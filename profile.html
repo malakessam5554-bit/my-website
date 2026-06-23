@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
@@ -9,9 +10,34 @@
         :root { --bg: #050505; --accent: #00d4ff; }
         body { background: var(--bg); color: #fff; margin: 0; font-family: 'Montserrat', sans-serif; display: flex; flex-direction: column; align-items: center; padding: 40px 20px; font-size: 1.2rem; }
 
-        .menu-icon { position: fixed; top: 25px; left: 25px; font-size: 2rem; color: var(--accent); cursor: pointer; z-index: 1000; }
+        .fade-in { opacity: 0; animation: fadeInAnimation 1.2s ease-in-out forwards; }
+        @keyframes fadeInAnimation {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* تنسيقات المربع الأنيق الجديد */
+        .name-container {
+            margin: 30px 0; padding: 3px; border-radius: 30px;
+            background: linear-gradient(45deg, var(--accent), #7000ff);
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+            cursor: pointer; transition: 0.3s;
+        }
+        .name-container:hover { transform: scale(1.02); }
+        .name-box {
+            background: #050505; padding: 20px 50px; border-radius: 28px;
+            text-align: center; color: #fff; font-family: 'Cairo', sans-serif;
+            font-size: 1.6rem; text-shadow: 0 0 10px var(--accent);
+            animation: glowText 2s infinite alternate;
+        }
+        @keyframes glowText {
+            from { text-shadow: 0 0 5px var(--accent); }
+            to { text-shadow: 0 0 20px var(--accent), 0 0 30px var(--accent); }
+        }
+
+        .menu-icon { position: fixed; top: 25px; left: 25px; font-size: 2rem; color: var(--accent); cursor: pointer; z-index: 1000; transition: 0.3s; }
+        .menu-icon:hover { transform: scale(1.2); }
         
-        /* القائمة الجانبية مع إعدادات الخط */
         .side-menu { 
             position: fixed; top: 0; left: -320px; width: 300px; height: 100%; 
             background: rgba(0, 0, 0, 0.98); backdrop-filter: blur(20px);
@@ -19,10 +45,16 @@
             padding-top: 100px; text-align: center;
         }
         .side-menu.active { left: 0; }
-        .side-menu .btn { font-size: 1.3rem; padding: 15px 30px; margin-bottom: 20px; }
-
-        .profile-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; width: 100%; max-width: 1100px; margin-top: 40px; }
         
+        #menuContent { transition: all 0.5s ease; padding: 20px; }
+        .side-menu .btn { 
+            font-size: 1.5rem; padding: 20px 40px; margin-bottom: 30px; 
+            width: 85%; border: 2px solid var(--accent); transition: 0.3s;
+        }
+        .side-menu .btn:hover { background: var(--accent); color: #000; }
+
+        .profile-grid { 
+        display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; width: 100%; max-width: 1100px; margin-top: 40px; }
         .card { background: rgba(255,255,255,0.03); padding: 30px; border-radius: 40px; border: 1px solid rgba(255,255,255,0.1); text-align: center; transition: 0.4s; position: relative; overflow: hidden; }
         .card:hover { border-color: var(--accent); box-shadow: 0 0 20px rgba(0, 212, 255, 0.15); transform: translateY(-5px); }
         
@@ -33,13 +65,7 @@
 
         .card i { font-size: 2.2rem; color: var(--accent); margin-bottom: 15px; }
 
-        .luxury-box { 
-            display: none; opacity: 0; transition: opacity 0.8s ease-in-out;
-            background: radial-gradient(circle, #1a1a2e, #050505);
-            padding: 50px; border-radius: 50px; border: 3px double var(--accent);
-            text-align: center; width: 90%; max-width: 500px; margin: 40px auto;
-            box-shadow: 0 0 50px rgba(0, 212, 255, 0.4);
-        }
+        .luxury-box { display: none; opacity: 0; transition: opacity 0.8s ease-in-out; background: radial-gradient(circle, #1a1a2e, #050505); padding: 50px; border-radius: 50px; border: 3px double var(--accent); text-align: center; width: 90%; max-width: 500px; margin: 40px auto; box-shadow: 0 0 50px rgba(0, 212, 255, 0.4); }
         .elegant-text { font-family: 'Cairo', sans-serif; font-size: 2rem; color: #fff; text-shadow: 0 0 15px var(--accent); }
 
         .social-box { border: 1px solid rgba(255,255,255,0.1); padding: 25px; border-radius: 30px; margin: 40px 0; background: rgba(255,255,255,0.02); }
@@ -56,15 +82,19 @@
 
     <div class="menu-icon" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
     <div class="side-menu" id="sideMenu">
-        <div style="padding-top: 50px;">
+        <div id="menuContent" style="padding-top: 50px;">
             <button class="btn" onclick="changeFont()">تغيير الخط 🔤</button><br><br>
             <button class="btn" onclick="toggleMenu()">إغلاق ✕</button>
         </div>
     </div>
 
-    <div style="margin-top: 40px; font-size: 2rem; color: var(--accent); font-weight: bold;">Welcome to my website 👩🏻‍💻</div>
+    <div class="fade-in" style="margin-top: 40px; font-size: 2rem; color: var(--accent); font-weight: bold;">Welcome to my website 👩🏻‍💻</div>
 
-    <div class="profile-grid">
+    <div class="name-container fade-in" onclick="window.location.href='designer.html'">
+        <div class="name-box">✧ زخرف اسمك هنا ✧</div>
+    </div>
+
+    <div class="profile-grid fade-in">
         <div class="card"><i class="fa-solid fa-user-astronaut"></i><h3>My Profile</h3><p>I'm Malak Essam and I welcome you to my website.</p></div>
         <div class="card"><i class="fa-solid fa-code"></i><h3>My Skills</h3><p>I can design websites, design games, edit and create custom websites.</p></div>
         <div class="card"><i class="fa-solid fa-heart"></i><h3>My interests</h3><p>I love learning programming languages and I love playing karate.</p></div>
@@ -80,7 +110,7 @@
         <button class="btn" onclick="hideMessage()">إغلاق الرسالة</button>
     </div>
 
-    <div class="social-box">
+    <div class="social-box fade-in">
         <h3 style="margin: 0; color: #aaa; font-size: 1.1rem;">My Social Media 👩🏻‍💻</h3>
         <div class="social-section">
             <a href="https://www.instagram.com/malakessam5555" target="_blank" class="icon-link"><i class="fab fa-instagram"></i></a>
@@ -88,22 +118,24 @@
         </div>
     </div>
 
-    <div class="footer-banner">
+    <div class="footer-banner fade-in">
         <p style="font-family: 'Cairo', sans-serif; font-size: 1.4rem; margin: 0;">Website Designer | Malak Essam 👩🏻‍💻</p>
     </div>
 
     <script>
         function toggleMenu() { 
             const sideMenu = document.getElementById('sideMenu');
+            const menuContent = document.getElementById('menuContent');
             sideMenu.classList.toggle('active');
-            // تكبير الخط وجعله واضحاً عند فتح القائمة
+            
             if (sideMenu.classList.contains('active')) {
-                sideMenu.style.fontSize = '1.5rem';
+                menuContent.style.fontSize = '2rem'; 
+                menuContent.style.transform = 'scale(1.1)';
             } else {
-                sideMenu.style.fontSize = '1.2rem';
+                menuContent.style.fontSize = '1.2rem';
+                menuContent.style.transform = 'scale(1)';
             }
         }
-
         function changeFont() {
             const fonts = ['Montserrat', 'Cairo', 'Arial', 'Tahoma'];
             document.body.style.fontFamily = fonts[Math.floor(Math.random() * fonts.length)];
@@ -120,4 +152,4 @@
         }
     </script>
 </body>
-</html>
+    </html>
